@@ -26,56 +26,6 @@ signupEmailForm.addEventListener("submit", (e) => {
 });
 
 /* ******************* */
-/* SIGNUP LOGIC - PHONE */
-/* ******************* */
-let recaptchaContainer = document.getElementById("recaptchaContainer");
-let signupPhoneForm = document.getElementById("signupPhoneForm");
-let signupPhoneVerifyForm = document.getElementById("signupPhoneVerifyForm");
-
-window.onload = function () {
-  window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
-    "recaptchaContainer"
-  );
-  recaptchaVerifier.render().then(function (widgetId) {
-    window.recaptchaWidgetId = widgetId;
-    console.log(widgetId);
-  });
-  //   var recaptchaResponse = grecaptcha.getResponse(window.recaptchaWidgetId);
-  //   console.log(recaptchaResponse);
-};
-
-signupPhoneForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-
-  const number = signupPhoneForm["signup_phone"].value;
-  auth
-    .signInWithPhoneNumber(number, window.recaptchaVerifier)
-    .then((confirmationResult) => {
-      window.confirmationResult = confirmationResult;
-      coderesult = confirmationResult;
-      console.log(coderesult);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
-
-signupPhoneVerifyForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-
-  const number = signupPhoneVerifyForm["signup_phone_verify"].value;
-
-  confirmationResult
-    .confirm(number)
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
-
-/* ******************* */
 /* LOGIN LOGIC - EMAIL*/
 /* ******************* */
 let login_error = document.getElementById("login_error");
@@ -120,4 +70,86 @@ auth.onAuthStateChanged((user) => {
     logOut.style.display = "none";
     console.log("User logged out!");
   }
+});
+
+/* ******************* */
+/* LOGIN LOGIC - PHONE */
+/* ******************* */
+let recaptchaContainer = document.getElementById("recaptchaContainer");
+let loginPhoneForm = document.getElementById("loginPhoneForm");
+let loginPhoneVerifyForm = document.getElementById("loginPhoneVerifyForm");
+
+window.onload = function () {
+  window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
+    "recaptchaContainer"
+  );
+  recaptchaVerifier.render().then(function (widgetId) {
+    window.recaptchaWidgetId = widgetId;
+    console.log(widgetId);
+  });
+  //   var recaptchaResponse = grecaptcha.getResponse(window.recaptchaWidgetId);
+  //   console.log(recaptchaResponse);
+};
+
+loginPhoneForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const number = loginPhoneForm["login_phone"].value;
+  auth
+    .signInWithPhoneNumber(number, window.recaptchaVerifier)
+    .then((confirmationResult) => {
+      window.confirmationResult = confirmationResult;
+      coderesult = confirmationResult;
+      console.log(coderesult);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+loginPhoneVerifyForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const number = loginPhoneVerifyForm["login_phone_verify"].value;
+
+  confirmationResult
+    .confirm(number)
+    .then((user) => {
+      console.log(user);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+/* ******************* */
+/* LOGIN LOGIC - GOOGLE */
+/* ******************* */
+let googleSignIn = document.getElementById("googleSignIn");
+
+googleSignIn.addEventListener("click", (e) => {
+  var provider = new firebase.auth.GoogleAuthProvider();
+  // provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+
+  auth
+    .signInWithPopup(provider)
+    .then(function (result) {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      var token = result.credential.accessToken;
+      // The signed-in user info.
+      var user = result.user;
+      // ...
+      console.log(result);
+    })
+    .catch(function (error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // The email of the user's account used.
+      var email = error.email;
+      // The firebase.auth.AuthCredential type that was used.
+      var credential = error.credential;
+      // ...
+      console.log(error);
+    });
 });
