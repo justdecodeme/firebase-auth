@@ -10,8 +10,8 @@ signupForm.addEventListener("submit", (e) => {
   const password = signupForm["signup_password"].value;
 
   auth.createUserWithEmailAndPassword(email, password).then((cred) => {
-    console.log(cred.user);
-    console.log("User Signed up!");
+    // console.log(cred.user);
+    // console.log("User Signed up!");
   });
 });
 
@@ -28,14 +28,27 @@ loginForm.addEventListener("submit", (e) => {
   const password = loginForm["login_password"].value;
 
   auth.signInWithEmailAndPassword(email, password).then((cred) => {
-    console.log(cred.user);
-    console.log("User Logged in!");
+    // console.log(cred.user);
+    // console.log("User Logged in!");
   });
 });
 
 logOut.addEventListener("click", () => {
   auth.signOut().then((cred) => {
     console.log(cred.user);
-    console.log("Successfully log out!");
+    console.log("User logged out!");
   });
+});
+
+/* ******************* */
+/* COMMON LOGIC */
+/* ******************* */
+auth.onAuthStateChanged((user) => {
+  if (user) {
+    logOut.style.display = "block";
+    console.log("User logged in: ", user);
+  } else {
+    logOut.style.display = "none";
+    console.log("User logged out!");
+  }
 });
