@@ -36,7 +36,12 @@ window.onload = function () {
   window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
     "recaptchaContainer"
   );
-  recaptchaVerifier.render();
+  recaptchaVerifier.render().then(function (widgetId) {
+    window.recaptchaWidgetId = widgetId;
+    console.log(widgetId);
+  });
+  //   var recaptchaResponse = grecaptcha.getResponse(window.recaptchaWidgetId);
+  //   console.log(recaptchaResponse);
 };
 
 signupPhoneForm.addEventListener("submit", (e) => {
@@ -58,10 +63,10 @@ signupPhoneForm.addEventListener("submit", (e) => {
 signupPhoneVerifyForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  const number = signupPhoneForm["signup_phone_verify"].value;
+  const number = signupPhoneVerifyForm["signup_phone_verify"].value;
 
-  coderesult
-    .confirm(code)
+  confirmationResult
+    .confirm(number)
     .then((res) => {
       console.log(res);
     })
