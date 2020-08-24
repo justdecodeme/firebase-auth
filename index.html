@@ -39,5 +39,28 @@
         </div>
       </div>
     </div>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-analytics.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyA7_KpRZ8VR7dz_2THycDx1HAAcnGfb4ps",
+        authDomain: "savera-digital-firebase-auth.firebaseapp.com",
+        databaseURL: "https://savera-digital-firebase-auth.firebaseio.com",
+        projectId: "savera-digital-firebase-auth",
+        storageBucket: "savera-digital-firebase-auth.appspot.com",
+        messagingSenderId: "868061826443",
+        appId: "1:868061826443:web:0af726ff575726b1a1338e",
+        measurementId: "G-Z4CJSJJ24T",
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
   </body>
 </html>
