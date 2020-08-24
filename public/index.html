@@ -45,13 +45,13 @@
       <h2>Login Methods</h2>
       <ul class="nav nav-tabs">
         <li class="active">
-          <a data-toggle="tab" href="#login_email"><b>Email</b></a>
+          <a data-toggle="tab" href="#login_email">Email</a>
         </li>
         <li>
-          <a data-toggle="tab" href="#login_phone"><b>Phone</b></a>
+          <a data-toggle="tab" href="#login_phone">Phone</a>
         </li>
         <li>
-          <a data-toggle="tab" href="#login_gmail"><b>GMail</b></a>
+          <a data-toggle="tab" href="#login_gmail">Gmail</a>
         </li>
       </ul>
 
@@ -144,12 +144,13 @@
       <h2>Signup Methods</h2>
       <ul class="nav nav-tabs">
         <li class="active">
-          <a data-toggle="tab" href="#signup_email"><b>Email</b></a>
+          <a data-toggle="tab" href="#signup_email">Email</a>
         </li>
-        <li><a data-toggle="tab" href="#signup_gmail">GMail</a></li>
+        <li><a data-toggle="tab" href="#signup_phone">Phone</a></li>
+        <li><a data-toggle="tab" href="#signup_gmail">Gmail</a></li>
       </ul>
 
-      <div class="tab-content">
+      <div class="tab-content" style="margin-top: 20px;">
         <div id="signup_email" class="tab-pane fade in active">
           <form id="signupEmailForm">
             <div class="form-group">
@@ -182,8 +183,13 @@
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
         </div>
+        <div id="signup_phone" class="tab-pane fade">
+          <p>Signup not required for this!</p>
+          <p>Login using <b>Phone</b> tab above!</p>
+        </div>
         <div id="signup_gmail" class="tab-pane fade">
-          <h3>gmail</h3>
+          <p>Signup not required for this!</p>
+          <p>Login using <b>Gmail</b> tab above!</p>
         </div>
       </div>
     </div>
