@@ -1,13 +1,19 @@
 let signupForm = document.getElementById("signupForm");
+let logOut = document.getElementById("logOut");
 
 signupForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  const email = signupForm["email"].value;
-  const password = signupForm["password"].value;
+  const email = signupForm["signup_email"].value;
+  const password = signupForm["signup_password"].value;
 
-  console.log(email, password);
   auth.createUserWithEmailAndPassword(email, password).then((cred) => {
-    console.log(cred);
+    console.log("User Signed up!");
+  });
+});
+
+logOut.addEventListener("click", () => {
+  auth.signOut().then(() => {
+    console.log("Successfully log out!");
   });
 });

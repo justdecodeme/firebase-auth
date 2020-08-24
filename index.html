@@ -18,45 +18,101 @@
   </head>
   <body>
     <h1>Firebase Authentication!</h1>
+    <br />
+
+    <button type="button" class="btn btn-danger" id="logOut">Log out</button>
+
+    <br />
+    <br />
 
     <div class="container">
       <h2>Login Methods</h2>
       <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#email">Email</a></li>
-        <li><a data-toggle="tab" href="#phone">Phone</a></li>
-        <li><a data-toggle="tab" href="#gmail">GMail</a></li>
+        <li class="active">
+          <a data-toggle="tab" href="#login_email">Email</a>
+        </li>
+        <li><a data-toggle="tab" href="#login_phone">Phone</a></li>
+        <li><a data-toggle="tab" href="#login_gmail">GMail</a></li>
       </ul>
 
       <div class="tab-content">
-        <div id="email" class="tab-pane fade in active">
-          <form id="signupForm">
+        <div id="login_email" class="tab-pane fade in active">
+          <form id="loginForm">
             <div class="form-group">
-              <label for="email">Email address</label>
+              <label for="login_email_input">Email address</label>
               <input
                 type="email"
                 class="form-control"
-                id="email"
-                name="email"
+                id="login_email_input"
+                name="login_email"
                 placeholder="Enter email"
               />
             </div>
             <div class="form-group">
-              <label for="password">Password</label>
+              <label for="login_password_input">Password</label>
               <input
                 type="password"
                 class="form-control"
-                id="password"
-                name="password"
+                id="login_password_input"
+                name="login_password"
                 placeholder="Password"
               />
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
         </div>
-        <div id="phone" class="tab-pane fade">
+        <div id="login_phone" class="tab-pane fade">
           <h3>phone</h3>
         </div>
-        <div id="gmail" class="tab-pane fade">
+        <div id="login_gmail" class="tab-pane fade">
+          <h3>gmail</h3>
+        </div>
+      </div>
+    </div>
+
+    <br />
+    <hr />
+
+    <div class="container">
+      <h2>Sign up Methods</h2>
+      <ul class="nav nav-tabs">
+        <li class="active">
+          <a data-toggle="tab" href="#signup_email">Email</a>
+        </li>
+        <li><a data-toggle="tab" href="#signup_phone">Phone</a></li>
+        <li><a data-toggle="tab" href="#signup_gmail">GMail</a></li>
+      </ul>
+
+      <div class="tab-content">
+        <div id="signup_email" class="tab-pane fade in active">
+          <form id="signupForm">
+            <div class="form-group">
+              <label for="signup_email_input">Email address</label>
+              <input
+                type="email"
+                class="form-control"
+                id="signup_email_input"
+                name="signup_email"
+                placeholder="Enter email"
+              />
+            </div>
+            <div class="form-group">
+              <label for="signup_password_input">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                id="signup_password_input"
+                name="signup_password"
+                placeholder="Password"
+              />
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+        <div id="signup_phone" class="tab-pane fade">
+          <h3>phone</h3>
+        </div>
+        <div id="signup_gmail" class="tab-pane fade">
           <h3>gmail</h3>
         </div>
       </div>
