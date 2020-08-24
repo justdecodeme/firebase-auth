@@ -1,14 +1,14 @@
 /* ******************* */
-/* SIGNUP LOGIC */
+/* SIGNUP LOGIC - EMAIL */
 /* ******************* */
-let signupForm = document.getElementById("signupForm");
+let signupEmailForm = document.getElementById("signupEmailForm");
 let signup_error = document.getElementById("signup_error");
 
-signupForm.addEventListener("submit", (e) => {
+signupEmailForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  const email = signupForm["signup_email"].value;
-  const password = signupForm["signup_password"].value;
+  const email = signupEmailForm["signup_email"].value;
+  const password = signupEmailForm["signup_password"].value;
 
   auth
     .createUserWithEmailAndPassword(email, password)
@@ -26,9 +26,53 @@ signupForm.addEventListener("submit", (e) => {
 });
 
 /* ******************* */
-/* LOGIN LOGIC */
+/* SIGNUP LOGIC - PHONE */
 /* ******************* */
-let loginForm = document.getElementById("loginForm");
+let recaptchaContainer = document.getElementById("recaptchaContainer");
+let signupPhoneForm = document.getElementById("signupPhoneForm");
+let signupPhoneVerifyForm = document.getElementById("signupPhoneVerifyForm");
+
+window.onload = function () {
+  window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
+    "recaptchaContainer"
+  );
+  recaptchaVerifier.render();
+};
+
+signupPhoneForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const number = signupPhoneForm["signup_phone"].value;
+  auth
+    .signInWithPhoneNumber(number, window.recaptchaVerifier)
+    .then((confirmationResult) => {
+      window.confirmationResult = confirmationResult;
+      coderesult = confirmationResult;
+      console.log(coderesult);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+signupPhoneVerifyForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const number = signupPhoneForm["signup_phone_verify"].value;
+
+  coderesult
+    .confirm(code)
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+/* ******************* */
+/* LOGIN LOGIC - EMAIL*/
+/* ******************* */
 let login_error = document.getElementById("login_error");
 let logOut = document.getElementById("logOut");
 
